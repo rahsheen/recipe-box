@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+class RecipeList extends Component {
+  render () {
+    return (
+    <ul className="list-group">
+      <li>Recipes</li>
+    </ul>
+    );
+  }
+}
+
 class App extends Component {
+  getInitialState() {
+    return {
+        todos: this.props.todos
+      };
+  }
+
   render() {
+    var recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to Recipe Box</h2>
+          <h4>Welcome to Recipe Box</h4>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <RecipeList recipes={recipes} />
+        <a href="#modal1" className="waves-effect waves-light btn">
+          Add Recipe
+        </a>
       </div>
     );
   }
