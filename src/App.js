@@ -49,8 +49,8 @@ class App extends Component {
         <div className="row">
           <RecipeList recipes={this.props.recipes} />
         </div>
-        <a href="#modal1" className="waves-effect waves-light btn">
-          Add Recipe
+        <a href="#modal1" className="waves-effect waves-light btn-floating btn-large">
+          <i className="material-icons">add</i>
         </a>
         <div id="modal1" className="modal">
           <div className="modal-content">
