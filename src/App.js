@@ -1,19 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-function RecipeList(props) {
-  const recipes = props.recipes;
-  const recipeList = recipes.map((recipe) =>
-    <li key={recipe.name}>
-      <div className="collapsible-header">{recipe.name}</div>
-      <div className="collapsible-body"><span>{recipe.ingredients}</span></div>
-    </li>
-  );
-
-  return (
-    <ul className="collapsible popout" data-collapsible="accordion">{recipeList}</ul>
-  );
-}
+import RecipeList from './components/recipe-list'
 
 class App extends Component {
   constructor(props) {
@@ -46,8 +34,6 @@ class App extends Component {
   }
 
   handleChange = (event) => {
-    console.log(event.target);
-
     this.setState({
       [event.target.id]: event.target.value
     });
@@ -56,7 +42,7 @@ class App extends Component {
   render() {
 
     return (
-      <div className="App">
+      <div className="App container">
         <div className="App-header">
           <h4>Welcome to Recipe Box</h4>
         </div>
