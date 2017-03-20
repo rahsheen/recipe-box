@@ -15,11 +15,9 @@ class App extends Component {
   }
 
   add = () => {
-    let recipes = this.props.recipes;
+    let recipes = this.state.recipes;
     let recipeName = this.state.newRecipeName;
     let ingredients = this.state.newRecipeIngredients.split(',');
-
-    // Clear the inputs
 
     // Push new recipe into the Box
     recipes.push({
@@ -27,15 +25,19 @@ class App extends Component {
       ingredients: ingredients
     });
 
-    console.log(recipes);
-
     localStorage.setItem('recipes', JSON.stringify(recipes));
-    this.setState({ recipes: recipes });
+    this.setState({
+      recipes: recipes,
+      newRecipeName: "",
+      newRecipeIngredients: ""
+    });
   }
 
   handleChange = (event) => {
+    event.preventDefault();
+
     this.setState({
-      [event.target.id]: event.target.value
+      [event.target.id]: event.target.value,
     });
   }
 
