@@ -14,7 +14,9 @@ class App extends Component {
     };
   }
 
-  add = () => {
+  add = (e) => {
+    e.preventDefault();
+
     let recipes = this.state.recipes;
     let recipeName = this.state.newRecipeName;
     let ingredients = this.state.newRecipeIngredients.split(',');
@@ -33,16 +35,21 @@ class App extends Component {
     });
   }
 
-  handleChange = (event) => {
-    event.preventDefault();
+  delete(e) {
+    e.preventDefault();
+
+    
+  }
+
+  handleChange = (e) => {
+    e.preventDefault();
 
     this.setState({
-      [event.target.id]: event.target.value,
+      [e.target.id]: e.target.value,
     });
   }
 
   render() {
-
     return (
       <div className="App container">
         <div className="App-header">
