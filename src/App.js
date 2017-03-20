@@ -7,8 +7,10 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    let recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+
     this.state = {
-      recipes: props.recipes,
+      recipes: recipes,
       newRecipeName: "",
       newRecipeIngredients: ""
     };
@@ -56,7 +58,7 @@ class App extends Component {
           <h4>Welcome to Recipe Box</h4>
         </div>
         <div className="row">
-          <RecipeList recipes={this.props.recipes} />
+          <RecipeList recipes={this.state.recipes} />
         </div>
         <a href="#modal1" className="waves-effect waves-light btn-floating btn-large">
           <i className="material-icons">add</i>
