@@ -1,28 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Recipe from './recipe';
 
-function RecipeList(props) {
-    function renderIngredients(ingredients) {
-        const ingredientsList = ingredients.map((ingredient, i) => 
-        <li key={ingredient} className="collection-item">{ingredient}</li>
-        );
-        
-        return (<ul className="collection">{ingredientsList}</ul>);
+class RecipeList extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            selected: ""
+        }
+
     }
 
-    const recipeList = props.recipes.map((recipe) =>
-        <li key={recipe.name}>
-            <div className="collapsible-header"><h5>{recipe.name}</h5></div>
-            <div className="collapsible-body">
-                <span>{renderIngredients(recipe.ingredients)}</span>
-                <a className="btn">Edit</a>
-                <a className="btn red">Delete</a>
-            </div>
-        </li>
-    );
+    render() {
+        const recipeList = this.props.recipes.map((recipe, i) =>
+            <Recipe
+                key={i} id={i}
+                name={recipe.name}
+                ingredients={recipe.ingredients}
+                handleDelete={this.props.handleDelete}
+            />
+        );
 
-    return (
-        <ul className="collapsible popout" data-collapsible="accordion">{recipeList}</ul>
-    );
+        return (
+            <ul className="collapsible popout" data-collapsible="accordion">{recipeList}</ul>
+        );
+    }
 }
 
 export default RecipeList;

@@ -14,6 +14,8 @@ class App extends Component {
       newRecipeName: "",
       newRecipeIngredients: ""
     };
+
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   add = (e) => {
@@ -29,7 +31,10 @@ class App extends Component {
       ingredients: ingredients
     });
 
+    // Update localStorage
     localStorage.setItem('recipes', JSON.stringify(recipes));
+
+    // Refresh our State and reset form inputs
     this.setState({
       recipes: recipes,
       newRecipeName: "",
@@ -37,10 +42,21 @@ class App extends Component {
     });
   }
 
-  delete(e) {
+  handleEdit(e) {
     e.preventDefault();
 
+  }
+
+  handleDelete(recipeIndex) {
+
+    console.log("Going to delete ", recipeIndex);
     
+    let newRecipes = this.state.recipes.slice();
+    newRecipes.splice(recipeIndex, 1);
+
+    this.setState({
+      recipes: newRecipes
+    })
   }
 
   handleChange = (e) => {
@@ -57,8 +73,8 @@ class App extends Component {
         <div className="App-header">
           <h4>Welcome to Recipe Box</h4>
         </div>
-        <div className="row">
-          <RecipeList recipes={this.state.recipes} />
+        <div>
+          <RecipeList recipes={this.state.recipes} handleDelete={this.handleDelete} handleEdit={this.handleEdit} />
         </div>
         <a href="#modal1" className="waves-effect waves-light btn-floating btn-large">
           <i className="material-icons">add</i>
