@@ -43,7 +43,7 @@ class App extends Component {
     });
 
     // Update localStorage
-    localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
+    window.localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
   }
 
   edit = (e) => {
